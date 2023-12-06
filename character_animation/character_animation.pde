@@ -7,6 +7,7 @@ import processing.sound.*;
 //coin audio from https://pixabay.com/sound-effects/coin-c-02-102844/
 SoundFile coinDing;
 PImage map;
+PImage[] spinner;
 
 Coin coin;
 Hero character;
@@ -16,7 +17,10 @@ void setup() {
   map = loadImage("sample_map.png");
 
   coin = new Coin();
+
   coinDing = new SoundFile(this, "coin_c_02-102844.wav");
+spinner = getImages();
+
   character = new Hero();
 }
 
@@ -31,6 +35,18 @@ void draw() {
   character.move();
   character.display();
 }
+
+
+PImage[] getImages() {
+  PImage[] images = new PImage[5];
+
+  for (int i = 0; i < images.length; i++) {
+    images[i] = loadImage("star coin rotate " + (i + 1) + ".png");
+  }
+
+  return images;
+}
+
 
 void keyPressed() {
   if (keyCode == UP) {
