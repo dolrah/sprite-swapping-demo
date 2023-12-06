@@ -5,32 +5,43 @@
 //coin audio from https://pixabay.com/sound-effects/coin-c-02-102844/
 
 PImage map;
+PImage[] spinner;
 
 Coin coin;
 Hero character;
 
-void setup(){
+void setup() {
   size(400, 400);
   map = loadImage("sample_map.png");
-  
+
   coin = new Coin();
-  
+spinner = getImages();
   character = new Hero();
 }
 
-void draw(){
+void draw() {
   image(map, 0, 0, map.width * 2, map.height * 2);
-  
+
   coin.display();
-  if(coin.collision(character.position.x, character.position.y, character.xWidth, character.yHeight)){
+  if (coin.collision(character.position.x, character.position.y, character.xWidth, character.yHeight)) {
     coin = new Coin();
   }
-  
+
   character.move();
   character.display();
 }
 
-void keyPressed(){
+PImage[] getImages() {
+  PImage[] images = new PImage[5];
+
+  for (int i = 0; i < images.length; i++) {
+    images[i] = loadImage("star coin rotate " + (i + 1) + ".png");
+  }
+
+  return images;
+}
+
+void keyPressed() {
   if (keyCode == UP) {
     character.velocity.y -= 1;
   }
