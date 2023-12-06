@@ -18,6 +18,10 @@ class Coin {
     //line((x - w/4), (y - 0.9 * h), (x + w/4), (y - 0.9 * h) + h);
     if((x - w/4) < position.x - r && (x + w/4) > position.x + r
         && (y - 0.9 * h) < position.y - r && (y - 0.9 * h) + h > position.y + r){
+          if(coinDing.isPlaying() == false) {
+             coinDing.play();
+          }
+        
       return true;
     }
     else return false;
